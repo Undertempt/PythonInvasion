@@ -22,6 +22,7 @@ class PythonInvasion:
         """Starts the main loop for the game"""
         while True:
             self._check_events()
+            self.snake.update()
             self._update_screen()
             #Tells pygame to ensure the loop runs 60 times per second
             self.clock.tick(60)
@@ -35,10 +36,14 @@ class PythonInvasion:
                 elif event.type == pygame.KEYDOWN:
                      if event.key == pygame.K_RIGHT:
                           #Move the snake to the right
-                          self.snake.rect.x += 1
+                          self.snake.moving_right = True
                      elif event.key == pygame.K_LEFT:
-                          self.snake.rect.x -= 1
-                     
+                          self.snake.moving_left = True
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_RIGHT:
+                         self.snake.moving_right = False
+                    elif event.key == pygame.K_LEFT:
+                         self.snake.moving_left = False
                                      
     #Helper function for screen updates.
     def _update_screen (self):
