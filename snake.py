@@ -26,9 +26,9 @@ class Snake:
     #Checks to see if moving is True and moves the char accordingly
     def update(self):
         #Updates the snake's x value, not the rect
-        if self.moving_right:
+        if self.moving_right and self.rect.right < self.screen_rect.right :
             self.x += self.settings.snake_speed
-        if self.moving_left:
+        if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.snake_speed
         #Updates the rect object from self.x
         self.rect.x = self.x
